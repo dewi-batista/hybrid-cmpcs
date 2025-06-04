@@ -1,0 +1,19 @@
+BMNIST latent_dim_16/n_bins_256/epoch_21
+Accuracy for   256 bins: 0.9474 (0.9562) : 
+Accuracy for   512 bins: 0.9495 (0.9554) : 
+Accuracy for  1024 bins: 0.9500 : 
+Accuracy for  2048 bins: 0.9511 : 
+Accuracy for  4096 bins: 0.9517 : 
+Accuracy for  8192 bins: 0.9523 : 
+Accuracy for 16384 bins: 0.9522 : 
+
+BMNIST latent_dim_16/n_bins_16384/epoch_19
+Accuracy for   256 bins: 0.8648 (0.9622) : 
+Accuracy for   512 bins: 0.9112 (0.9630) : 
+Accuracy for  1024 bins: 0.9470 (0.9636) : 
+Accuracy for  2048 bins: 0.9516 (0.9652) : 
+Accuracy for  4096 bins: 0.9621 (0.9641) : 
+Accuracy for  8192 bins: 0.9638 (0.9651) : 
+Accuracy for 16384 bins: 0.9637 (0.9653) : 
+Accuracy for 32768 bins: 0.9645 : 
+Accuracy for 65536 bins: 0.9654 : 

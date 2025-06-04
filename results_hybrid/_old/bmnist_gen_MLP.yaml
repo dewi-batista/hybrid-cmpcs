@@ -1,0 +1,87 @@
+Training -
+Batch size: 128,
+n_chunks: 32,
+Patience: 5,
+
+Latent optimisation -
+Patience: 5,
+
+latent_dim_16/n_bins_256/epoch_26
+Mean LL and Accuracy for   256 bins: -136.1970 : 0.8620 : 
+Mean LL and Accuracy for   512 bins: -131.4469 : 0.8770 : 
+Mean LL and Accuracy for  1024 bins: -128.1291 : 0.9001 : 
+Mean LL and Accuracy for  2048 bins: -125.8053 : 0.9045 : 
+Mean LL and Accuracy for  4096 bins: -124.1078 : 0.9072 : 
+Mean LL and Accuracy for  8192 bins: -123.0591 : 0.9136 : 
+Mean LL and Accuracy for 16384 bins: -122.3461 : 0.9184 : 
+Mean LL and Accuracy for 32768 bins: -121.8660 : 
+Mean LL and Accuracy for 65536 bins: -121.5251 : 
+
+latent_dim_16/n_bins_512/epoch_21
+Mean LL and Accuracy for   256 bins: -136.2810 : 0.8513 : 
+Mean LL and Accuracy for   512 bins: -129.8835 : 0.8830 : 
+Mean LL and Accuracy for  1024 bins: -125.5610 : 0.9003 : 
+Mean LL and Accuracy for  2048 bins: -122.3967 : 0.9132 : 
+Mean LL and Accuracy for  4096 bins: -120.1577 : 0.9199 : 
+Mean LL and Accuracy for  8192 bins: -118.5862 : 0.9253 : 
+Mean LL and Accuracy for 16384 bins: -117.4720 : 0.9258 : 
+Mean LL and Accuracy for 32768 bins: -116.7319 : 
+Mean LL and Accuracy for 65536 bins: -116.2114 : 
+
+latent_dim_16/n_bins_1024/epoch_20
+Mean LL and Accuracy for   256 bins: -138.2230 : 0.8600 : 
+Mean LL and Accuracy for   512 bins: -130.6157 : 0.8795 : 
+Mean LL and Accuracy for  1024 bins: -124.6566 : 0.8931 : 
+Mean LL and Accuracy for  2048 bins: -120.5049 : 0.9051 : 
+Mean LL and Accuracy for  4096 bins: -117.5163 : 0.9176 : 
+Mean LL and Accuracy for  8192 bins: -115.2812 : 0.9212 : 
+Mean LL and Accuracy for 16384 bins: -113.7533 : 0.9243 : 
+Mean LL and Accuracy for 32768 bins: -112.6147 : 
+Mean LL and Accuracy for 65536 bins: -111.8244 : 
+
+latent_dim_16/n_bins_2048/epoch_21
+Mean LL and Accuracy for   256 bins: -140.8839 : 0.8198 : 
+Mean LL and Accuracy for   512 bins: -131.4418 : 0.8682 : 
+Mean LL and Accuracy for  1024 bins: -124.9886 : 0.8830 : 
+Mean LL and Accuracy for  2048 bins: -119.8266 : 0.9066 : 
+Mean LL and Accuracy for  4096 bins: -116.3317 : 0.9181 : 
+Mean LL and Accuracy for  8192 bins: -113.7487 : 0.9275 : 
+Mean LL and Accuracy for 16384 bins: -111.7232 : 0.9323 : 
+Mean LL and Accuracy for 32768 bins: -110.2489 : 
+Mean LL and Accuracy for 65536 bins: -109.2028 : 
+
+latent_dim_16/n_bins_4096/epoch_48
+Mean LL and Accuracy for   256 bins: -143.7895 : 0.8421 : 
+Mean LL and Accuracy for   512 bins: -133.2292 : 0.8745 : 
+Mean LL and Accuracy for  1024 bins: -124.6558 : 0.9046 : 
+Mean LL and Accuracy for  2048 bins: -119.1031 : 0.9191 : 
+Mean LL and Accuracy for  4096 bins: -114.5534 : 0.9311 : 
+Mean LL and Accuracy for  8192 bins: -111.1833 : 0.9344 : 
+Mean LL and Accuracy for 16384 bins: -108.6366 : 0.9416 : 
+Mean LL and Accuracy for 32768 bins: -106.6628 : 
+Mean LL and Accuracy for 65536 bins: -105.2233 : 
+
+latent_dim_16/n_bins_8192/epoch_19
+Mean LL and Accuracy for   256 bins: -147.1724 : 0.7664 : 
+Mean LL and Accuracy for   512 bins: -136.2272 : 0.8303 : 
+Mean LL and Accuracy for  1024 bins: -127.8513 : 0.8729 : 
+Mean LL and Accuracy for  2048 bins: -120.6171 : 0.9019 : 
+Mean LL and Accuracy for  4096 bins: -115.3768 : 0.9179 : 
+Mean LL and Accuracy for  8192 bins: -111.5095 : 0.9286 : 
+Mean LL and Accuracy for 16384 bins: -108.5077 : 0.9391 : 
+Mean LL and Accuracy for 32768 bins: -106.1837 : 
+Mean LL and Accuracy for 65536 bins: -104.4911 : 
+
+latent_dim_16/n_bins_16384/epoch_41
+Mean LL and Accuracy for    256 bins: -152.6846 (-136.7538) : 0.7615 : 
+Mean LL and Accuracy for    512 bins: -139.3434 : 0.8460 : 
+Mean LL and Accuracy for   1024 bins: -129.6124 : 0.8878 : 
+Mean LL and Accuracy for   2048 bins: -121.5093 : 0.9092 : 
+Mean LL and Accuracy for   4096 bins: -115.2972 (-112.8950) : 0.9268 : 
+Mean LL and Accuracy for   8192 bins: -110.7468 (-108.9596) : 0.9383 : 
+Mean LL and Accuracy for  16384 bins: -107.2377 (-106.0994) : 0.9460 : 
+Mean LL and Accuracy for  32768 bins: -104.4906 : 
+Mean LL and Accuracy for  65536 bins: -102.2789 : 
+Mean LL and Accuracy for 131072 bins: -100.6294 : 
+Mean LL and Accuracy for 262144 bins:  -99.3601 : 
+Mean LL and Accuracy for 524288 bins:  -98.3962 : 

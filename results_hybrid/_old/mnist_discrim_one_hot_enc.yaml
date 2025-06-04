@@ -1,0 +1,44 @@
+MNIST latent_dim_16/n_bins_256/epoch_12
+Accuracy for   256 bins: 0.9319 : 
+Accuracy for   512 bins: 0.9353 : 
+Accuracy for  1024 bins: 0.9389 : 
+Accuracy for  2048 bins: 0.9406 : 
+Accuracy for  4096 bins: 0.9410 : 
+Accuracy for  8192 bins: 0.9425 : 
+Accuracy for 16384 bins: 0.9427 : 
+
+MNIST latent_dim_16/n_bins_512/epoch_10
+Accuracy for   256 bins: 0.9214 :
+Accuracy for   512 bins: 0.9354 : 
+Accuracy for  1024 bins: 0.9374 : 
+Accuracy for  2048 bins: 0.9383 : 
+Accuracy for  4096 bins: 0.9407 : 
+Accuracy for  8192 bins: 0.9427 : 
+Accuracy for 16384 bins: 0.9421 : 
+
+MNIST latent_dim_16/n_bins_1024/epoch_5
+Accuracy for   256 bins: 0.8922 : 
+Accuracy for   512 bins: 0.9292 : 
+Accuracy for  1024 bins: 0.9383 : 
+Accuracy for  2048 bins: 0.9424 : 
+Accuracy for  4096 bins: 0.9468 : 
+Accuracy for  8192 bins: 0.9503 : 
+Accuracy for 16384 bins: 0.9495 : 
+
+MNIST latent_dim_16/n_bins_2048/epoch_9
+Accuracy for   256 bins: 0.9040 : 
+Accuracy for   512 bins: 0.9235 : 
+Accuracy for  1024 bins: 0.9343 : 
+Accuracy for  2048 bins: 0.9391 : 
+Accuracy for  4096 bins: 0.9413 : 
+Accuracy for  8192 bins: 0.9462 : 
+Accuracy for 16384 bins: 0.9469 : 
+
+MNIST latent_dim_16/n_bins_4096/epoch_6
+Accuracy for   256 bins: 0.9128 : 
+Accuracy for   512 bins: 0.9235 : 
+Accuracy for  1024 bins: 0.9334 : 
+Accuracy for  2048 bins: 0.9402 : 
+Accuracy for  4096 bins: 0.9438 : 
+Accuracy for  8192 bins: 0.9459 : 
+Accuracy for 16384 bins: 0.9477 : 
