@@ -33,20 +33,6 @@ class BernoulliDecoder(nn.Module):
             raise NotImplementedError
 
         logits_p = self.net(z)
-        
-        # # print(logits_p.shape, x.shape)
-        # # logits_p: [B*k, 784], x: [B, 784]
-        # D = x.size(1)               # == 784
-        # # build one Boolean mask of length 784: randomly drop 20% of the first 780, keep last 4
-        # mask = torch.cat([
-        #     torch.rand(D-4, device=x.device) > 0.2,     # keep ~80% of cols 0…779
-        #     torch.ones(4,  device=x.device, dtype=torch.bool)  # always keep cols 780–783
-        # ])
-        # # apply the same mask to both:
-        # x        = x[:,        mask]   # now [B, ~628]
-        # logits_p = logits_p[:, mask]   # now [B*k, ~628]
-        # # print(logits_p.shape, x.shape)
-
         logits_p_chunks = tuple([logits_p]) if n_chunks is None else logits_p.chunk(n_chunks, dim=0)
 
         bce_image = torch.cat([bce_loss(logits_p_chunk[:, :-4], x[:, :-4], missing=False) for logits_p_chunk in logits_p_chunks], dim=1)
@@ -64,38 +50,6 @@ class BernoulliDecoder(nn.Module):
         log_prob = weight_numerator * log_prob_joint - weight_denomintr * log_prob_margi
 
         return log_prob
-
-    def test_time(
-        self,
-        x: torch.Tensor,
-        log_w: torch.Tensor,
-        z: torch.Tensor,
-        lamda,
-        X_num,
-        Y_num,
-        k: Optional[int] = None,
-        missing: Optional[bool] = None,
-        n_chunks: Optional[int] = None,
-    ):
-        if k is not None:
-            raise NotImplementedError
-
-        logits_p = self.net(z)
-        logits_p_chunks = tuple([logits_p]) if n_chunks is None else logits_p.chunk(n_chunks, dim=0)
-
-        bce_image = torch.cat([bce_loss(logits_p_chunk[:, :-4], x[:, :-4], missing=False) for logits_p_chunk in logits_p_chunks], dim=1)
-        bce_label = torch.cat([bce_loss(logits_p_chunk[:, -4:], x[:, -4:], missing=False) for logits_p_chunk in logits_p_chunks], dim=1)
-        
-        log_prob_bins_numerator = bce_image + bce_label
-        
-        log_prob_joint = torch.logsumexp(log_prob_bins_numerator, dim=1, keepdim=False)
-        
-        # weight_numerator = lamda / Y_num + (1 - lamda) / (X_num + Y_num)
-        # weight_denomintr = lamda / Y_num
-        
-        # log_prob = weight_numerator * log_prob_joint - weight_denomintr * log_prob_margi
-
-        return log_prob_joint
 
 class CategoricalDecoder(nn.Module):
 
@@ -175,7 +129,6 @@ class ContinuousMixture(pl.LightningModule):
         if (z is None and log_w is None):
             z, log_w = self.sampler(seed=seed)
         
-        # log_prob = self.decoder.test_time(
         log_prob = self.decoder.forward(
             x, log_w.to(x.device), z.to(x.device), self.lamda, self.X_num, self.Y_num, k, self.missing, self.n_chunks
         )
@@ -214,7 +167,16 @@ class ContinuousMixture(pl.LightningModule):
     ):
         self.eval()
         loader = tqdm(loader) if progress_bar else loader
-        lls = torch.cat([self.forward(x.to(device), z, log_w, k=None, seed=seed) for x in loader], dim=0)
+        # lls = torch.cat([self.forward(x.to(device), z, log_w, k=None, seed=seed) for x in loader], dim=0)
+        
+        # only for test time! it uses lambda=0, X_num=0 and Y_num=1 so it returns NLL
+        lls = torch.cat([
+            self.decoder.forward(
+                x.to(device), log_w.to(device), z.to(device), 0, 0, 1, self.k, self.missing, self.n_chunks
+            )
+            for x in loader],
+        dim=0)
+        
         assert len(lls) == len(loader.dataset)
         return lls
 
