@@ -64,6 +64,9 @@ class CategoricalDecoder(nn.Module):
         x: torch.Tensor,
         log_w: torch.Tensor,
         z: torch.Tensor,
+        lamda,
+        X_num,
+        Y_num,
         k: Optional[int] = None,
         missing: Optional[bool] = None,
         n_chunks: Optional[int] = None,
@@ -71,29 +74,27 @@ class CategoricalDecoder(nn.Module):
         z_chunks = tuple([z]) if n_chunks is None else z.chunk(n_chunks, dim=0)
         batch_size = x.shape[0]
         x_nan = x.detach().clone()
-        x_nan[:, -1:] = float('nan') # change to -4 if bin-hot encoded
-        if k is not None:
-            print("I better not be in use!!")
-            with torch.no_grad():
-                # Run approximate posterior to find the 'best' k z values for each x
-                log_prob_bins = torch.cat(
-                    [ce_loss(self.net(z_chunk), x, k=None, missing=missing) - ce_loss(self.net(z_chunk), x_nan, k=None, missing=True) for z_chunk in z_chunks], dim=1)
-                # log_prob_bins = log_prob_bins + log_w.unsqueeze(0)
-                z_top_k = z[torch.topk(log_prob_bins, k=k, dim=-1)[1]]  # shape (batch_size, k, latent_dim)
-            
-            log_prob_bins_top_k = ce_loss(self.net(z_top_k.view(batch_size * k, -1)), x, k=k, missing=missing)
-            log_prob_bins_denomintr = ce_loss(self.net(z_top_k.view(batch_size * k, -1)), x_nan, k, missing=True)
-            return log_prob_bins_top_k, log_prob_bins_denomintr
+        x_nan[:, -4:] = float('nan') # change to -4 if bin-hot encoded
+        
+        z_chunk = z_chunks[0]
+        print(self.net(z_chunk).shape)
+        print(x[:, :-4].shape)
 
-        else:
-            log_prob_bins_numerator = torch.cat([ce_loss(self.net(z_chunk), x, k, missing) for z_chunk in z_chunks], dim=1)
-            log_prob_bins_denomintr = torch.cat([ce_loss(self.net(z_chunk), x_nan, k, True) for z_chunk in z_chunks], dim=1)
-            # log_prob = torch.logsumexp(log_prob_bins_numerator + log_w.unsqueeze(0), dim=1, keepdim=False) - torch.logsumexp(log_prob_bins_denomintr + log_w.unsqueeze(0), dim=1, keepdim=False)
-            
-            # check that this give the same!!
-            log_prob = torch.logsumexp(log_prob_bins_numerator, dim=1, keepdim=False) - torch.logsumexp(log_prob_bins_denomintr, dim=1, keepdim=False)
-            # print(log_prob_bins_numerator[0][0])
-            return log_prob
+        ce_image = torch.cat([ce_loss(self.net(z_chunk)[:, :-4], x[:, :-4], k, False) for z_chunk in z_chunks], dim=1)
+        ce_label = torch.cat([ce_loss(self.net(z_chunk)[:, -4:], x[:, -4:], k, False) for z_chunk in z_chunks], dim=1)
+        
+        log_prob_bins_numerator = ce_image + ce_label
+        log_prob_bins_denomintr = ce_image
+        
+        log_prob_joint = torch.logsumexp(log_prob_bins_numerator, dim=1, keepdim=False)
+        log_prob_margi = torch.logsumexp(log_prob_bins_denomintr, dim=1, keepdim=False)
+        
+        weight_numerator = lamda / Y_num + (1 - lamda) / (X_num + Y_num)
+        weight_denomintr = lamda / Y_num
+        
+        log_prob = weight_numerator * log_prob_joint - weight_denomintr * log_prob_margi
+
+        return log_prob
 
 class ContinuousMixture(pl.LightningModule):
 

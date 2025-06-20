@@ -57,7 +57,7 @@ def bins_lo(
             z_best = z.weight.data.detach().clone()
             early_stopping_counter = 0
             best_valid_loss = valid_loss_epoch
-        print(f"Epoch {epoch+1}/{max_epochs}, Train: {train_loss:.4f}, Validation: {valid_loss_epoch:.4f}, Patience counter: {early_stopping_counter}")
+        # print(f"Epoch {epoch+1}/{max_epochs}, Train: {train_loss:.4f}, Validation: {valid_loss_epoch:.4f}, Patience counter: {early_stopping_counter}")
 
     return z_best, log_w
 
