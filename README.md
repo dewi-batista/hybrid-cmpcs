@@ -23,19 +23,11 @@ Probabilistic circuits (PCs) are a class of deep generative probabilistic models
 
 ![pic_1](figures/pc_example_layered.png)
 
-Continuous mixtures of PCs (CMPCs) are appropriately-weighted ensembles of PCs
-$$
-p(\mathbf{x})=\frac{1}{N}\sum_{i=1}^Np_{\phi}(\mathbf{x}|\mathbf{z}_i)
-$$
-where the parameters of each component PC are determined by a decoder $\phi$ given some latent sample $\mathbf{z}\in\Omega_{\mathbf{Z}}$. At the time of their publication, CMPCs were learned entirely generatively and obtaining state-of-the-art results among PC-based methods for generative tasks.
+Continuous mixtures of PCs (CMPCs) are appropriately-weighted ensembles of PCs where the parameters of each component PC are determined by a decoder $\phi$. At the time of their publication, CMPCs were learned entirely generatively and obtaining state-of-the-art results among PC-based methods for generative tasks.
 
 ![pic_2](figures/cmpc_ffm.png)
 
-Hybrid CMPCs are CMPCs learned using a hybrid learning objective which encourages both generative and discriminative learning. This is done by minimising
-$$
-\mathcal{L}_{\lambda}(\phi)=\lambda\text{CE}(\phi)+(1-\lambda)\text{NLL}(\phi)
-$$
-where $\text{CE}(\phi)$ is a measure of the model's discriminatory ability and $\text{NLL}(\phi)$ is a measure of the model's generative ability.
+Hybrid CMPCs are CMPCs learned using a hybrid learning objective which encourages both generative and discriminative learning.
 
 **Classification accuracies obtained by a hybrid CMPC trained on Binary MNIST**
 ![pic_3](figures/accuracies.png)
