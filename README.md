@@ -35,3 +35,5 @@ We see that hybrid CMPCs can classify incomplete samples effectively
 
 **Samples drawn from a hybrid CMPC trained on Binary MNIST**
 ![pic_3](figures/samples.png)
+
+# ❗ CHANGE REPO NAME TO `hybrid-cm-tpms` UPON SUBMISSION
