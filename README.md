@@ -1,6 +1,6 @@
 ## Hybrid Continuous Mixtures of Probabilistic Circuits (hybrid CMPCs)
 
-This repo contains all programs used to train and test hybrid continuous mixtures of probabilistic circuits for my master's thesis. I using a powerful GPU to run `hybrid_CMPC_train.py` and `hybrid_CMPC_test.ipynb`, e.g. a 32 GB V100 GPU.
+This repository contains all programs used to train and test hybrid continuous mixtures of probabilistic circuits (hybrid CMPCs) for my master's thesis. I suggest using a powerful GPU to run `hybrid_CMPC_train.py` and `hybrid_CMPC_test.ipynb`, e.g. a 32 GB V100 GPU. The repoistory was forked from https://github.com/AlCorreia/cm-tpm and modified for the learning of hybrid CMPCs.
 
 ### Dependencies (Python 3.10.4)
 
