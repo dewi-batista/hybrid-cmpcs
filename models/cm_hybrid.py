@@ -44,7 +44,7 @@ class BernoulliDecoder(nn.Module):
         log_prob_joint = torch.logsumexp(log_prob_bins_numerator, dim=1, keepdim=False)
         log_prob_margi = torch.logsumexp(log_prob_bins_denomintr, dim=1, keepdim=False)
         
-        weight_numerator = lamda / Y_num + (1 - lamda) / (X_num + Y_num)
+        weight_numerator = lamda / Y_num + (1 - lamda) / X_num
         weight_denomintr = lamda / Y_num
         
         log_prob = weight_numerator * log_prob_joint - weight_denomintr * log_prob_margi
@@ -168,15 +168,16 @@ class ContinuousMixture(pl.LightningModule):
     ):
         self.eval()
         loader = tqdm(loader) if progress_bar else loader
-        # lls = torch.cat([self.forward(x.to(device), z, log_w, k=None, seed=seed) for x in loader], dim=0)
+        lls = torch.cat([self.forward(x.to(device), z, log_w, k=None, seed=seed) for x in loader], dim=0)
         
-        # only for test time! it uses lambda=0, X_num=0 and Y_num=1 so it returns NLL
-        lls = torch.cat([
-            self.decoder.forward(
-                x.to(device), log_w.to(device), z.to(device), 0, 0, 1, self.k, self.missing, self.n_chunks
-            )
-            for x in loader],
-        dim=0)
+        # # only for test time!
+        # # used for computing NLLs quickly at test time (lambda=0, X_num=0 and Y_num=1)
+        # lls = torch.cat([
+        #     self.decoder.forward(
+        #         x.to(device), log_w.to(device), z.to(device), 0, 0, 1, self.k, self.missing, self.n_chunks
+        #     )
+        #     for x in loader],
+        # dim=0)
         
         assert len(lls) == len(loader.dataset)
         return lls
