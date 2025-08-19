@@ -11,7 +11,7 @@ Install all dependencies by opening a terminal, setting its directory to the roo
 - `/figures`: Figures pertaining to classification accuracies and drawn samples.
 - `/logs`: Trained models: their parameters and architecture.
 - `/models`: Implementations of the forward passes of our decoders and continuous mixtures. Also contains the decoder architectures and implementations of latent optimisation.
-- `/utils```: Utility-like programs: fixed seeding program for reproducible results, binary-entropy and cross-entropy loss functions.
+- `/utils`: Utility-like programs: fixed seeding program for reproducible results, binary-entropy and cross-entropy loss functions.
 - `hybrid_CMPC_train.py` and `hybrid_CMPC_test.ipynb`: Implementations of training and testing hybrid CMPCs. 
 
 **Bencmarking:** To benchmark hybrid CMPCs trained and stored in `/logs` simply run the blocks in `hybrid_CMPC_test.ipynb`. It's in the form of a Python notebook to make it a friendly experience.
