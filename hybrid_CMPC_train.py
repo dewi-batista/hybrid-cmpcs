@@ -54,8 +54,6 @@ for idx in range(mnist_train_and_val.shape[0]):
     label = labels_mnist_train_and_val[idx]
     if use_mnist:
         mnist_train_and_val[idx][-1] = label
-        # bin_label = torch.tensor([int(d) for d in bin(label)[2:].zfill(4)]).float()
-        # mnist_train_and_val[idx][-4:] = bin_label
     else:
         binary_label = 255 * torch.tensor([int(d) for d in bin(label)[2:].zfill(4)]).float()
         mnist_train_and_val[idx][-4:] = binary_label
